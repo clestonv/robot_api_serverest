@@ -11,9 +11,9 @@ Criar sessao
     ...    Content-Type=application/json
     Create Session
     ...    alias=APIServeRest
-    # ...    url=https://serverest.dev
+    ...    url=https://serverest.dev
     ...    verify=True
-    ...    url=http://localhost:3000
+    # ...    url=http://localhost:3000
     ...    headers=${headers}
 
 Criar novo usuário
