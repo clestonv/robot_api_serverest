@@ -1,37 +1,41 @@
 name: Robot Framework Tests
 
-on: 
-  workflow-dispatch:
+on:
+  workflow_dispatch:
+    tags:
+      description: 'Purpose of Run This Workflow?'
+      required: true
+      type: string  
 
-  jobs:
-    test:
-      runs-on: ubuntu-latest
+jobs:
+  test:
+    runs-on: ubuntu-latest
 
-      steps:
-        - echo "Fazendo checkout do repositorio"
-        - name: Checkout Repository
-          uses: actions/checkout@v2
+    steps:
+      - echo "Fazendo checkout do repositorio"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-        - echo "Instalação da versão 3.12 do Python"
-        - name: Set up Python
-          uses: actions/setup-python@v2
-          with:
-            python-version: '3.12'
+      - echo "Instalação da versão 3.12 do Python"
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
 
-        - echo "Instalação das depedências do Projeto"
-        - name: Install dependencies
-          run: |
-            pip install robotframework
-            pip install robotframework-requests
+      - echo "Instalação das depedências do Projeto"
+      - name: Install dependencies
+        run: |
+          pip install robotframework
+          pip install robotframework-requests
 
-        - echo "Executando os testes de API do Robot"
-        - name: Run Robot Framework tests
-          run: |
-            robot --outputdir results/ tests/
-        
-        - echo "Salvando o Report dos Testes"
-        - name: Test Report
-          uses: actions/upload-artifact@v4
-          with:
-            name: robot-framework-report
-            path: results/**
+      - echo "Executando os testes de API do Robot"
+      - name: Run Robot Framework tests
+        run: |
+          robot --outputdir results/ tests/
+      
+      - echo "Salvando o Report dos Testes"
+      - name: Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-framework-report
+          path: results/**
