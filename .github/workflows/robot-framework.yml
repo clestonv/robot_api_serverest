@@ -1,0 +1,25 @@
+name: Robot Framework Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          pip install robotframework-requests
+
+      - name: Run Robot Framework tests
+        run: |
+          robot --outputdir results/ tests/
+
+      - name: Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-framework-report
+          path: results/**
