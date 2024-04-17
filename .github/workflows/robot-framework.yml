@@ -29,7 +29,7 @@ jobs:
         # run: echo Executando os testes de API do Robot
         run: |
           echo Executando os testes de API do Robot
-          robot --outputdir results/ tests/
+          robot --outputdir results/ tests/api/
       
       - name: Test Report
         # run: echo Salvando o Report dos Testes
@@ -41,7 +41,7 @@ jobs:
   
   test_web:
     name: Web Tests
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout Repository
@@ -58,14 +58,13 @@ jobs:
         # run: echo Instalação das depedências do Projeto
         run: |
           echo Instalação das depedências do Projeto
-          pip install robotframework
-          pip install robotframework-requests
+          pip install robotframework-seleniumlibrary
 
       - name: Run Robot Framework tests
         # run: echo Executando os testes de API do Robot
         run: |
           echo Executando os testes de API do Robot
-          robot --outputdir results/ tests/
+          robot --outputdir results/ tests/we/
       
       - name: Test Report
         # run: echo Salvando o Report dos Testes
