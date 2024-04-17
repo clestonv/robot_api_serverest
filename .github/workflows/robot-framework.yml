@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - echo "Fazendo checkout do repositorio"
       - name: Checkout Repository
+        run: echo Fazendo checkout do repositorio
         uses: actions/checkout@v2
 
-      - echo "Instalação da versão 3.12 do Python"
       - name: Set up Python
+        run: echo Instalação da versão 3.12 do Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.12'
@@ -24,13 +24,13 @@ jobs:
           pip install robotframework
           pip install robotframework-requests
 
-      - echo "Executando os testes de API do Robot"
       - name: Run Robot Framework tests
+        run: echo Executando os testes de API do Robot
         run: |
           robot --outputdir results/ tests/
       
-      - echo "Salvando o Report dos Testes"
       - name: Test Report
+        run: echo Salvando o Report dos Testes
         uses: actions/upload-artifact@v4
         with:
           name: robot-framework-report
