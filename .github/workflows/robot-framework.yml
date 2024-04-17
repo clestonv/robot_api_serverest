@@ -36,7 +36,12 @@ jobs:
           name: robot-framework-report
           path: results/**
       
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          artifact_name: robot-framework-report
+          artifact_name: Test Report
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
