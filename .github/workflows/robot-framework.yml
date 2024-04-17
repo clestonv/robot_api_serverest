@@ -8,28 +8,28 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        run: echo Fazendo checkout do repositorio
+        # run: echo Fazendo checkout do repositorio
         uses: actions/checkout@v2
 
       - name: Set up Python
-        run: echo Instalação da versão 3.12 do Python
+        # run: echo Instalação da versão 3.12 do Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: echo Instalação das depedências do Projeto
+        # run: echo Instalação das depedências do Projeto
         run: |
           pip install robotframework
           pip install robotframework-requests
 
       - name: Run Robot Framework tests
-        run: echo Executando os testes de API do Robot
+        # run: echo Executando os testes de API do Robot
         run: |
           robot --outputdir results/ tests/
       
       - name: Test Report
-        run: echo Salvando o Report dos Testes
+        # run: echo Salvando o Report dos Testes
         uses: actions/upload-artifact@v4
         with:
           name: robot-framework-report
