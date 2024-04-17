@@ -32,16 +32,17 @@ jobs:
       - name: Test Report
         # run: echo Salvando o Report dos Testes
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: robot-framework-report
-          path: results/**
+          path: results/
       
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: results/**
+          path: results/
       - name: Deploy to Github Pages
         id: deployment
         uses: actions/deploy-pages@v1
