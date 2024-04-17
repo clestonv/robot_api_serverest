@@ -6,11 +6,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
     steps:
       - name: Checkout Repository
         # run: echo Fazendo checkout do repositorio
@@ -41,7 +36,17 @@ jobs:
         with:
           name: robot-framework-report
           path: results/
-      
+  
+  deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    steps:
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
