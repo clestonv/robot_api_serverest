@@ -18,8 +18,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - echo "Instalação das depedências do Projeto"
       - name: Install dependencies
+        run: echo Instalação das depedências do Projeto
         run: |
           pip install robotframework
           pip install robotframework-requests
