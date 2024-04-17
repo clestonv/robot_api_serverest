@@ -3,7 +3,7 @@ name: Robot Framework Tests
 on: push 
 
 jobs:
-  test:
+  test_api:
     name: API Tests
     runs-on: ubuntu-latest
 
@@ -36,14 +36,79 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: robot-framework-report
+          name: robot-framework-report-api
           path: results/
+  
+  test_web:
+    name: Web Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        # run: echo Fazendo checkout do repositorio
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        # run: echo Instalação da versão 3.12 do Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        # run: echo Instalação das depedências do Projeto
+        run: |
+          echo Instalação das depedências do Projeto
+          pip install robotframework
+          pip install robotframework-requests
+
+      - name: Run Robot Framework tests
+        # run: echo Executando os testes de API do Robot
+        run: |
+          echo Executando os testes de API do Robot
+          robot --outputdir results/ tests/
+      
+      - name: Test Report
+        # run: echo Salvando o Report dos Testes
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: robot-framework-report-web
+          path: results/
+  merge:
+    name: Merge Reports
+    runs-on: ubuntu-latest
+    needs: 
+      - test_api
+      - test_web
+
+    steps:
+      - name: Set up Python
+        # run: echo Instalação da versão 3.12 do Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        # run: echo Instalação das depedências do Projeto
+        run: |
+          echo Instalação das depedências do Projeto
+          pip install robotframework
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with: 
+          path: results/
+
+      - name: Merge Reports
+        run: |
+          rebot --merge results/robot-framework-report-api/output.xml results/robot-framework-report-web/output.xml
+          ls -a
 
   deploy:
     name: Deploy GitHub Pages 🌐
     runs-on: ubuntu-latest
     needs: 
-      - test
+      - merge
     permissions:
       contents: read
       pages: write
