@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout Repository
         # run: echo Fazendo checkout do repositorio
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
         # run: echo Instalação da versão 3.12 do Python
@@ -46,7 +46,7 @@ jobs:
     steps:
       - name: Checkout Repository
         # run: echo Fazendo checkout do repositorio
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
         # run: echo Instalação da versão 3.12 do Python
