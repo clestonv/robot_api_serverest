@@ -20,6 +20,7 @@ jobs:
       - name: Install dependencies
         # run: echo Instalação das depedências do Projeto
         run: |
+          echo Instalação das depedências do Projeto
           pip install robotframework
           pip install robotframework-requests
 
@@ -34,3 +35,8 @@ jobs:
         with:
           name: robot-framework-report
           path: results/**
+      
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: robot-framework-report
