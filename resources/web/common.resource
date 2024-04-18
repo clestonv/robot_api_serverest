@@ -50,7 +50,7 @@ Passo 6 - Escolher perfil de usuário administrador
   Capture Element Screenshot    css=${form_cad}
 Passo 7 - Clicar em cadastrar
     Wait Until Element Is Visible    css=${btn_cad}
-    Sleep    6s
+    Sleep    10s
     Wait Until Element Is Visible    css=${home_page}
     Element Should Be Visible    css=${home_page}
     Capture Element Screenshot    css=${home_page}
