@@ -41,7 +41,7 @@ jobs:
   
   test_web:
     name: Web Tests
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
