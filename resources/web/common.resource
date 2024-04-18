@@ -47,9 +47,10 @@ Passo 5 - Digitar uma senha
 Passo 6 - Escolher perfil de usuário administrador
     Wait Until Element Is Visible    css=${inputCheckAdmin}
     Click Element    css=${inputCheckAdmin}
+  Capture Element Screenshot    css=${form_cad}
 Passo 7 - Clicar em cadastrar
     Wait Until Element Is Visible    css=${btn_cad}
-    Sleep    2s
+    Sleep    6s
     Wait Until Element Is Visible    css=${home_page}
     Element Should Be Visible    css=${home_page}
     Capture Element Screenshot    css=${home_page}
