@@ -84,7 +84,7 @@ jobs:
     steps:
       - name: Set up Python
         # run: echo Instalação da versão 3.12 do Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
@@ -126,7 +126,7 @@ jobs:
       url: https://clestonv.github.io/robot_api_serverest/report.html
     steps:
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
 
       - name: Download Artifacts
         uses: actions/download-artifact@v4
@@ -134,11 +134,11 @@ jobs:
           name: robot-framework-report
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./
 
       - name: Deploy to Github Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
         
