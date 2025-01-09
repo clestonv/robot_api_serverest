@@ -5,34 +5,29 @@ on: push
 jobs:
   test_api:
     name: API Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout Repository
-        # run: echo Fazendo checkout do repositorio
         uses: actions/checkout@v4
 
       - name: Set up Python
-        # run: echo Instalação da versão 3.12 do Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        # run: echo Instalação das depedências do Projeto
         run: |
           echo Instalação das depedências do Projeto
           pip install robotframework
           pip install robotframework-requests
 
       - name: Run Robot Framework tests
-        # run: echo Executando os testes de API do Robot
         run: |
           echo Executando os testes de API do Robot
           robot --name "API and Web Tests" --outputdir results/ tests/api/ 
       
       - name: Test Report
-        # run: echo Salvando o Report dos Testes
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -41,33 +36,28 @@ jobs:
   
   test_web:
     name: Web Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout Repository
-        # run: echo Fazendo checkout do repositorio
         uses: actions/checkout@v4
 
       - name: Set up Python
-        # run: echo Instalação da versão 3.12 do Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        # run: echo Instalação das depedências do Projeto
         run: |
           echo Instalação das depedências do Projeto
           pip install robotframework-seleniumlibrary
 
       - name: Run Robot Framework tests
-        # run: echo Executando os testes de API do Robot
         run: |
           echo Executando os testes de API do Robot
           robot --name "API and Web Tests" --outputdir results/ tests/web/
       
       - name: Test Report
-        # run: echo Salvando o Report dos Testes
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -83,13 +73,11 @@ jobs:
 
     steps:
       - name: Set up Python
-        # run: echo Instalação da versão 3.12 do Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        # run: echo Instalação das depedências do Projeto
         run: |
           echo Instalação das depedências do Projeto
           pip install robotframework
@@ -105,7 +93,6 @@ jobs:
           ls -a
 
       - name: Upload Merge Report
-        # run: echo Salvando o Report dos Testes
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -114,7 +101,7 @@ jobs:
 
   deploy:
     name: Deploy GitHub Pages 🌐
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: 
       - merge
     permissions:
